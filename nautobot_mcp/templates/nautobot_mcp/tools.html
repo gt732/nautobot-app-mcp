@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nautobot MCP Tools{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>MCP Tools Overview</h1>
+        <div class="server-status">
+            {% if mcp_status.running %}
+                <span class="label label-success"><i class="mdi mdi-check-circle"></i> Server Online</span>
+            {% else %}
+                <span class="label label-danger"><i class="mdi mdi-alert-circle"></i> Server Offline</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if not mcp_status.running %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-warning">
+            <i class="mdi mdi-alert"></i> {{ mcp_status.error }}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if mcp_status.running %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="mdi mdi-tools" aria-hidden="true"></span>
+                    Available Tools
+                </h3>
+            </div>
+            <div class="panel-body">
+                {% if tools %}
+                    <table class="table table-hover table-headings">
+                        <thead>
+                            <tr>
+                                <th>Tool Name</th>
+                                <th>Description</th>
+                                <th>Module</th>
+                                <th>Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tool in tools %}
+                                <tr>
+                                    <td><code>{{ tool.name }}</code></td>
+                                    <td>{{ tool.description|truncatechars:200 }}</td>
+                                    <td><small class="text-muted">{{ tool.module_path }}</small></td>
+                                    <td>
+                                        {% if tool.parameters %}
+                                            <pre class="pre-scrollable" style="max-height: 150px;">{{ tool.parameters }}</pre>
+                                        {% else %}
+                                            <span class="text-muted">No parameters defined</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <i class="mdi mdi-alert"></i> No MCP tools are currently registered.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
