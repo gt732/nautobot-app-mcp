@@ -12,6 +12,10 @@ Nautobot MCP enables AI assistants or applications to interact with your network
 
 https://modelcontextprotocol.io/introduction
 
+## Demo using Librechat - Connected to Nautobot MCP
+
+https://github.com/user-attachments/assets/283d68c2-d35f-4506-b909-45c1850e7281
+
 ## Installation
 
 ### 1. Install the package
