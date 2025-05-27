@@ -1,3 +1,7 @@
+# ⚠️ Repository Archived
+
+This project is no longer maintained or updated. I am archiving this repository due to limited time and bandwidth to continue development.
+
 # Nautobot MCP
 
 ![Nautobot](https://img.shields.io/badge/Nautobot-2.0+-blue)
